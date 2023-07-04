@@ -263,7 +263,7 @@ html5 سند استاندارد -->
 
                         // مخاطب جدید به انتهای آرایه فرضی لیست مخاطبین اضافه میشود
                         contactList.push(findContact)
-                        
+
                         console.log(contactlist) // نمایش خروجی افزودن مخاطب جدید در کنسول
                     }
                 } else {
@@ -275,7 +275,7 @@ html5 سند استاندارد -->
                 exeBtn.nextElementSibling.textContent = 'مخاطب ابتدا باید در سامانه ثبت نام نماید!'
             }
         } else {
-            mobileUser.classList.add('error')
+            mobileInput.classList.add('error')
             exeBtn.nextElementSibling.textContent = 'شماره موبایل معتبر نیست!'
         }
     })
