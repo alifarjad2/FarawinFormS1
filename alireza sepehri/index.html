@@ -1,9 +1,32 @@
+<!-- معرفی سند به مرورگر
+html5 سند استاندارد -->
 <!DOCTYPE html>
+
+<!-- محتوای کل سند درون این تگ قرار میگیرد
+زبان سند فارسی
+دایرکشن راست به چپ -->
 <html lang="fa" dir="rtl">
+
+<!-- اطلاعاتی درباره سند برای پردازش ماشین
+    در این تگ قرار دارد از جمله متاتگ ها ، عنوان پنجره مرورگر  -->
 <head>
+
+    <!-- رمزگذاری کاراکتر سند را مشخص می کند -->
     <meta charset="UTF-8">
+
+    <!-- اندازه و شکل ویوپورت قابل مشاهده کاربر را مشخص می کند
+    عرض ویوپورت برابر با عرض دستگاه
+    هنگامی که صفحه برای اولین بار بارگیری می شود،
+    سطح بزرگنمایی یک برابر باشد  -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- عنوان پنجره مرورگر را تعیین می کند -->
     <title>Document</title>
+
+    <!-- css دستورات 
+    را درون این تگ مینویسیم جهت استایل دهی 
+    به عناصر سند  
+    این نوع استایل دهی عناصر را اینترنال می گوییم-->
     <style>
         label {
             display: inline-block;
@@ -25,137 +48,237 @@
         }
     </style>
 </head>
+
+<!-- محتوای اصلی و قابل مشاهده سایت در این تگ قرار میگیرد
+بدنه سایت -->
 <body>
 
-    <!-- انتخاب عملیات افزودن /ویرایش -->
+    <!-- 
+        یک تگ عمومی "دیو" با کلاس "رو" تعریف کردم تا محتوای هر بخشی که در یک ردیف 
+        و با یک هدف کنار هم قرار میگیرند را تفکیک و استایل خاصی از جمله فاصله عمودی
+        از ردیف های قبل و بعد برای آن تعیین کردم
+     -->
+
+    <!-- با هدف انتخاب عملیات افزودن /ویرایش -->
     <div class="row">
+
+        <!-- با این تگ یک عنوان برای هر یک از عناصر دریافت اطلاعات 
+             به آن عنصر مرتبط می کنم 
+         -->
         <label for="select_action">انتخاب عملیات :</label>
+
+        <!-- با این تگ دو آیتم قابل انتخاب برای معرفی هدف کاربر مشخص شده
+        آیتم اول برای هدف افزودن مخاطب جدید تعیین شده و
+        آیتم دوم برای هدف ویرایش مخاطب موجود تعریف شده است  -->
         <select name="" id="select_action">
-            <option value="1">افزودن مخاطب</option>
-            <option value="2">ویرایش مخاطب</option>
+            <option value="add-contact">افزودن مخاطب</option>
+            <option value="edit-contact">ویرایش مخاطب</option>
         </select>
     </div>
     
-    <!-- برای ارسال داده های دریافت شده از کاربر -->
+    <!-- به کمک این تگ اطلاعات دریافت شده از کاربر را به سرور ارسال میکنم
+    action آدرس مقصد اطلاعات ارسالی
+    post روش ارسال اطلاعات  -->
     <form action="" method="post">
 
-        <!-- دریافت شماره موبایل -->
+        <!-- با هدف دریافت شماره موبایل از کاربر -->
         <div class="row">
-            <label for="mobileUser">موبایل :</label>
-            <input type="tel" id="mobileUser" maxlength="11" minlength="11" pattern="[09]{2}[0-9]{9}"
+
+            <!-- درج عنوان موبایل برای تشخیص کاربر
+            برای وارد کردن شماره موبایل و نیز ارتباط دادن عنوان به این کادر -->
+            <label for="mobile-input">موبایل :</label>
+
+            <!-- این تگ با تایپ "تل" برای دریافت شماره تلفن از کاربر
+            این نوع اینپوت باعث میشود در برخی دستگاه ها شماره کلیدهای 
+            مربوط به وارد کردن شماره تلفن ظاهر شود 
+            حداقل و حداکثر تعداد ورودی به این اینپوت بایستی حتما 11 کاراکتر باشد
+            pattern فرمت قابل قبول ورودی این تگ
+            کاربر ملزم است حتما این تگ خالی نباشد
+             -->
+            <input type="tel" id="mobile-input" maxlength="11" minlength="11" pattern="[09]{2}[0-9]{9}"
              placeholder="*********09" required>
         </div>
 
-        <!-- دریافت نام کاربر -->
+        <!-- با هدف دریافت نام برای مخاطب -->
         <div class="row">
-            <label for="nameUser">نام و نام خانوادگی :</label>
-            <input type="text" id="nameUser" minlength="3" required>
+
+            <!-- درج عنوان نام کاربری برای تشخیص کاربر
+            برای وارد کردن نام کاربری و نیز ارتباط دادن عنوان به این کادر -->
+            <label for="username-input">نام کاربری :</label>
+
+            <!-- این تگ با تایپ "تکست" برای دریافت نام کاربری از کاربر
+            نام کاربری باید حداقل سه کاراکتری باشد
+            کاربر ملزم است حتما این تگ خالی نباشد
+             -->
+            <input type="text" id="username-input" minlength="3" required>
         </div>
 
-        <!-- دکمه اجرای عملیات -->
-        <div class="row cnter">
-            <button id="btnPopup" class="in_btn"  type="button">اجرای عملیات</button>
+        <!-- دکمه اجرای عملیات افزودن/ویرایش مخاطب -->
+        <div class="row">
+
+            <!-- تگ "باتن" برای ساخت یک دکمه که با کلیک روی آن عملیات مورد نظر اجرا شود 
+                نوع آن را باتن گذاشتم تا فقط یک دکمه معمولی باشد و سابمیت شدن و ارسال اطلاعات
+                به سرور را با دستورات جاوااسکریپت مشخص کردم
+             -->
+            <button type="button" id="exe-btn">اجرای عملیات</button>
+
+            <!-- محتوای پیغام مربوط به نتیجه عملیات از طریق دستورات جاوااسکریپت
+            درون این تگ برای نمایش قرار می گیرد و با یک کلاس به آن رنگ قرمز واستایل دادم -->
             <p class="msg"></p>
         </div>
     </form>
 
+    <!-- دستورات جاوااسکریپت را درون این تگ قرار می دهیم
+    برای اینکه قبل از هر اتفاقی در ابتدا تمام محتوای سند بارگزاری شود
+    و سپس دستورات جاوااسکریپت اجرا شوند این تگ در انتهای "بادی" قرار دادم -->
     <script>
-// آرایه مخاطبین که در سامانه ثبت نام کرده اند
-const registeredList = [
-    {mobile: '09155803862',namefamily: 'علیرضا سپهری', username: ''},
-    {mobile: '09391570415',namefamily: 'علیرضا سپهری', username: ''},
-    {mobile: '09123205004',namefamily: 'علیرضا سپهری', username: ''},
-    {mobile: '09353649470',namefamily: 'علیرضا سپهری', username: ''}    
-]
 
-// آرایه لیست مخاطبین ذخیره شده
-const contactlist = [
-    {mobile: '09155803862',namefamily: 'علیرضا سپهری', username: 'علی'},
-    {mobile: '09353649470',namefamily: 'علیرضا سپهری', username: 'رضا'}   
-]
+    // example - آرایه ای از مخاطبین که در سامانه ثبت نام کرده اند
+    const registeredList = [
+        {mobile: '09155803862',namefamily: 'علیرضا سپهری', username: ''},
+        {mobile: '09391570415',namefamily: 'علیرضا سپهری', username: ''},
+        {mobile: '09123205004',namefamily: 'علیرضا سپهری', username: ''},
+        {mobile: '09353649470',namefamily: 'علیرضا سپهری', username: ''}    
+    ]
 
-// فرمت شماره موبایل
-const telFormat = /^[0,9]{2}\d{9}/
+    // example - آرایه لیست مخاطبین ذخیره شده
+    const contactList = [
+        {mobile: '09155803862',namefamily: 'علیرضا سپهری', username: 'علی'},
+        {mobile: '09353649470',namefamily: 'علیرضا سپهری', username: 'رضا'}   
+    ]
 
-// ثابت های نگهدارنده عناصر مورد استفاده
-const btnPopup = document.getElementById('btnPopup')
-const mobileInput = document.getElementById('mobileUser')
-const nameInput = document.getElementById('nameUser')
-const selectOption = document.getElementById('select_action')
+    // ثابت های نگهدارنده عناصر مورد استفاده
+    const selectOption = document.getElementById('select_action')
+    const mobileInput = document.getElementById('mobile-input')
+    const nameInput = document.getElementById('username-input')
+    const exeBtn = document.getElementById('exe-btn')
 
-// مقداری که میگیرد عملکرد (افزودن/ویرایش) دکمه را تعیین می کند
-let btnType = 'btnPlus'
+    // مقداری که میگیرد عملکرد (افزودن/ویرایش) دکمه را تعیین می کند
+    let btnType = 'contactPlus'
 
-// با تغییر آپشن نوع عملیات (افزودن/ویرایش مخاطب) تعیین می شود
-selectOption.onchange = e => {
-   if(selectOption.value == 2) {
-        btnType = 'btnEdit'
-   } else {
-        btnType = 'btnPlus'
-   }
-}
-
-// کلیک روی دکمه افزودن/ویرایش مخاطب
-btnPopup.addEventListener('click', e => {
-    let mobileVal = mobileInput.value
-    let val1 = mobileVal.match(telFormat)
-    let val2 = nameInput.value
-    let findContact = null
-
-    // اگر شماره موبایل معتبر باشد
-    if(val1) {
-        // جستجوی مخاطب در سامانه
-        for (const contact of registeredList) { /* registeredList-example list contacts of samaneh*/
-            if(mobileVal.match(contact.mobile)) {
-                findContact = contact
-                break
-            }
+    /* با تغییر آپشن نوع عملیات (افزودن/ویرایش مخاطب) تعیین می شود
+    onchange خصیصه ای برای رویداد تغییر وضعیت */
+    selectOption.onchange = () => {
+        if(selectOption.value == 'edit-contact') {
+                btnType = 'contactEdit'
+        } else {
+                btnType = 'contactPlus'
         }
-        // وقتی مخاطب در سامانه ثبت نام کرده باشد امکان ذخیره وجود خواهد داشت
-        if(findContact) {
-            mobileInput.classList.remove('error')
-            nameInput.classList.remove('error') 
-            btnPopup.nextElementSibling.textContent = ''
-            // بررسی می کند یک نام برای مخاطب وارد شده باشد
-            if(val2) {
-                let index = 0  // یک شمارنده برای یافتن ایندکس مخاطب 
+    }
 
-                // جستجوی مخاطب در لیست مخاطبین کاربر
-                for (const c of contactlist) {
-                    if(mobileVal.match(c.mobile)) {
-                        if(btnType === 'btnPlus') {
-                            btnPopup.nextElementSibling.textContent = 'این مخاطب قبلا ذخیره شده است!'
+    // فرمت شماره موبایل
+    const telFormat = /^[0,9]{2}\d{9}/
+
+    // کلیک روی دکمه افزودن/ویرایش مخاطب
+    exeBtn.addEventListener('click', () => {
+        /*شماره موبایل مطابق فرمت تعریف شده باشد انرا برمی گرداند
+        وگرنه مقدار "نال" را در آن میریزد */
+        let mobile = mobileInput.value.match(telFormat)
+
+        /* نام کاربری وارد شده را ذخیره می کنیم 
+        تا در زمان بررسی خالی بودن یا نبودن مورد استفاده قرار گیرد */
+        let username = nameInput.value
+
+        /* متغیری برای بررسی و تشخیص اینکه اطلاعات مخاطب درون آرایه های
+         محتوی لیست مخاطبین سامانه و همینطور لیست مخاطبین کاربر وجود دارد یا خیر */
+        let findContact = null
+
+        /* اگر شماره موبایل معتبر باشد دستورات ذیل اجرا می شود
+        در غیر اینصورت مقدار "نال" برمی گرداند و پیغام متناظر را نشان میدهد */
+        if(mobile) {
+
+            // حلقه جستجوی مخاطب در سامانه/ جستجو در آرایه فرضی لیست مخاطبین سامانه
+            for (const contact of registeredList) {
+
+                // اگر مخاطب پیدا شد یعنی در سامانه ثبت نام کرده است
+                if(mobileVal.match(contact.mobile)) {
+
+                    // آبجکت اطلاعات مخاطب درون متغیر ذخیره میشود
+                    findContact = contact
+
+                    /*  حلقه را ادامه نمیدهد و سریعا از حلقه خارج می شود
+                    و دستورات بعد از حلقه را اجرا می کند */
+                    break
+                }
+
+            } // انتهای دستورات حلقه 
+
+            /* وقتی مخاطب در سامانه ثبت نام کرده باشد امکان ذخیره وجود خواهد داشت
+            در غیر اینصورت مقدار "نال" برمی گرداند و پیغام متناظر را نشان میدهد */
+            if(findContact) {
+
+                /* اگر در بار اول با خطا مواجه شده و استایل کلاس خطا گرفته باشد 
+                آن کلاس را پاک میکنیم و همچنین پیغام های خطا نیز پاک می شود */
+                mobileInput.classList.remove('error')
+                nameInput.classList.remove('error') 
+                exeBtn.nextElementSibling.textContent = ''
+
+                /* بررسی می کند نام کاربری برای مخاطب وارد شده باشد
+                در غیر اینصورت مقدار "تهی" برمی گرداند و پیغام متناظر را نشان میدهد */
+                if(username) {
+                    let index = 0  // یک شمارنده برای یافتن ایندکس مخاطب 
+
+                    // حلقه جستجوی مخاطب در آرایه فرضی لیست مخاطبین کاربر
+                    for (const contact of contactList) {
+
+                        // اگر مخاطب پیدا شد یعنی قبلا به لیست مخاطبین افزوده شده
+                        if(mobileVal.match(contact.mobile)) {
+
+                            /* اگر نوع عملیات افزودن بعنوان مخاطب جدید باشد
+                            پیغام مربوطه را نمایش و متغیر را "نال" کرده تا افزوده نشود */
+                            if(btnType === 'btnPlus') {
+                                exeBtn.nextElementSibling.textContent = 'این مخاطب قبلا ذخیره شده است!'
+                                findContact = null
+
+                                // بدون بررسی موارد بعدی سریعا از حلقه خارج میشود
+                                break
+                            }
+
+                            /* اگر نوع عملیات ویرایش مخاطب موجود در لیست باشد
+                            که همان تغییر نام کاربری است مقدار جدید را اعمال میکند */
+                            findContact.username = username
+
+                            /* به کمک این دستور و ردیابی ایندکس مخاطب موجود 
+                            مقدار جدید را جایگزین مقدار قبلی می کند */
+                            contactList.splice(index, 1, findContact)
+
+                            // و متغیر را "نال" کرده تا در دستورات بعدی مجددا افزوده نشود
                             findContact = null
+                            console.log(contactlist) // نمایش خروجی ویرایش در کنسول
+
+                            // بدون بررسی موارد بعدی سریعا از حلقه خارج میشود
                             break
                         }
-                        // ویرایش مخاطب موجود در لیست
-                        findContact.username = val2
-                        contactlist.splice(index, 1, findContact)
-                        findContact = null
-                        console.log(contactlist) // نمایش خروجی ویرایش در کنسول
-                        break
+
+                        // شمارنده
+                        index+=1
                     }
-                    index+=1
-                }
-                // اگر مخاطب قبلا در لیست مخاطبین کاربر نباشد نال نشده و به لیست اضافه میشود
-                if(findContact) {
-                    findContact.username = val2
-                    contactlist.push(findContact)
-                    console.log(contactlist) // نمایش خروجی افزودن مخاطب جدید در کنسول
+
+                    /* اگر مخاطب قبلا در لیست مخاطبین کاربر نباشد "نال" نمیشود
+                    در نتیجه دستور شرطی زیر برای افزودن مخاطب جدید به لیست مخاطبین اجرا میشود*/
+                    if(findContact) {
+
+                        // داده مخاطب جدید که همان نام کاربری است اعمال می شود
+                        findContact.username = username
+
+                        // مخاطب جدید به انتهای آرایه فرضی لیست مخاطبین اضافه میشود
+                        contactList.push(findContact)
+                        
+                        console.log(contactlist) // نمایش خروجی افزودن مخاطب جدید در کنسول
+                    }
+                } else {
+                    nameInput.classList.add('error')
+                    exeBtn.nextElementSibling.textContent = 'یک نام دلخواه برای مخاطب وارد نمایید...'
                 }
             } else {
-                nameInput.classList.add('error')
-                btnPopup.nextElementSibling.textContent = 'یک نام دلخواه برای مخاطب وارد نمایید...'
+                mobileInput.classList.add('error')
+                exeBtn.nextElementSibling.textContent = 'مخاطب ابتدا باید در سامانه ثبت نام نماید!'
             }
         } else {
-            mobileInput.classList.add('error')
-            btnPopup.nextElementSibling.textContent = 'مخاطب ابتدا باید در سامانه ثبت نام نماید!'
+            mobileUser.classList.add('error')
+            exeBtn.nextElementSibling.textContent = 'شماره موبایل معتبر نیست!'
         }
-    } else {
-        mobileUser.classList.add('error')
-        btnPopup.nextElementSibling.textContent = 'شماره موبایل معتبر نیست!'
-    }
-})
+    })
     </script>    
 </body>
 </html>
