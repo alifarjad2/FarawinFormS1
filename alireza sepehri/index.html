@@ -1,0 +1,200 @@
+<!-- 
+    *menter: کامنت ها کجاس؟
+    بدون کامنت کدها و تمرین تحویل گرفته نمی شود
+    هر خط و هر نوع نیاز به کامنت دارد 
+-->
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      label {
+        display: inline-block;
+        width: 140px;
+      }
+      input {
+        padding: 6px 12px;
+      }
+      button {
+        padding: 5px 30px;
+        margin-right: 140px;
+        cursor: pointer;
+      }
+      .row {
+        margin: 20px auto;
+      }
+      .msg {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 
+    *menter: همین خط کامنت شما خودش یک جمله توضیح می خواد!
+    کامنت ناقص بررسی نمی شود
+    رجیون بندی نیز رعایت شود
+-->
+
+    <!-- انتخاب عملیات افزودن /ویرایش -->
+    <div class="row">
+      <label for="select_action">انتخاب عملیات :</label>
+      <select name="" id="select_action">
+        <option value="1">افزودن مخاطب</option>
+        <option value="2">ویرایش مخاطب</option>
+      </select>
+    </div>
+
+    <!-- برای ارسال داده های دریافت شده از کاربر -->
+    <form action="" method="post">
+      <!-- دریافت شماره موبایل -->
+      <div class="row">
+        <label for="mobileUser">موبایل :</label>
+        <input
+          type="tel"
+          id="mobileUser"
+          maxlength="11"
+          minlength="11"
+          pattern="[09]{2}[0-9]{9}"
+          placeholder="*********09"
+          required
+        />
+      </div>
+
+      <!-- دریافت نام کاربر -->
+      <div class="row">
+        <label for="nameUser">نام و نام خانوادگی :</label>
+        <input type="text" id="nameUser" minlength="3" required />
+      </div>
+
+      <!-- دکمه اجرای عملیات -->
+      <div class="row cnter">
+        <button id="btnPopup" class="in_btn" type="button">اجرای عملیات</button>
+        <p class="msg"></p>
+      </div>
+    </form>
+
+    <script>
+      // آرایه مخاطبین که در سامانه ثبت نام کرده اند
+      const registeredList = [
+        { mobile: "09155803862", namefamily: "علیرضا سپهری", username: "" },
+        { mobile: "09391570415", namefamily: "علیرضا سپهری", username: "" },
+        { mobile: "09123205004", namefamily: "علیرضا سپهری", username: "" },
+        { mobile: "09353649470", namefamily: "علیرضا سپهری", username: "" },
+      ];
+
+      // آرایه لیست مخاطبین ذخیره شده
+      const contactlist = [
+        { mobile: "09155803862", namefamily: "علیرضا سپهری", username: "علی" },
+        { mobile: "09353649470", namefamily: "علیرضا سپهری", username: "رضا" },
+      ];
+
+      // فرمت شماره موبایل
+      const telFormat = /^[0,9]{2}\d{9}/;
+
+      // ثابت های نگهدارنده عناصر مورد استفاده
+      const btnPopup = document.getElementById("btnPopup");
+      const mobileInput = document.getElementById("mobileUser");
+      const nameInput = document.getElementById("nameUser");
+      const selectOption = document.getElementById("select_action");
+
+      // مقداری که میگیرد عملکرد (افزودن/ویرایش) دکمه را تعیین می کند
+      let btnType = "btnPlus";
+
+      // با تغییر آپشن نوع عملیات (افزودن/ویرایش مخاطب) تعیین می شود
+      selectOption.onchange = (e) => {
+        if (selectOption.value == 2) {
+          btnType = "btnEdit";
+        } else {
+          btnType = "btnPlus";
+        }
+      };
+
+      /* *menter: کامنت ها که مثل قبل
+      خارج از بحث کامنت جاوااسکریپت تا اینجا خوب بود 
+       */
+
+      // کلیک روی دکمه افزودن/ویرایش مخاطب
+      btnPopup.addEventListener("click", (e) => {
+
+         /* *menter: e ?? نام گذاری کامل
+         اینجا و زیرش نام گذاری ها خیلی بد هستند
+       */
+
+        let mobileVal = mobileInput.value;
+        let val1 = mobileVal.match(telFormat);
+        let val2 = nameInput.value;
+        let findContact = null;
+
+         /* *menter: این کد ها که اصلا قابل خوندن نیستند
+         و درست هم کار نمی کنند
+         ناقص هم هستند...
+
+         ولی در کل جاوااسکریپتتون خیلی خوب هست
+         باید روی دقت و تمیز بودن کد بیشتر کار کنید
+       */
+
+
+        // اگر شماره موبایل معتبر باشد
+        if (val1) {
+          // جستجوی مخاطب در سامانه
+          for (const contact of registeredList) {
+            /* registeredList-example list contacts of samaneh*/
+            if (mobileVal.match(contact.mobile)) {
+              findContact = contact;
+              break;
+            }
+          }
+          // وقتی مخاطب در سامانه ثبت نام کرده باشد امکان ذخیره وجود خواهد داشت
+          if (findContact) {
+            mobileInput.classList.remove("error");
+            nameInput.classList.remove("error");
+            btnPopup.nextElementSibling.textContent = "";
+            // بررسی می کند یک نام برای مخاطب وارد شده باشد
+            if (val2) {
+              let index = 0; // یک شمارنده برای یافتن ایندکس مخاطب
+
+              // جستجوی مخاطب در لیست مخاطبین کاربر
+              for (const c of contactlist) {
+                if (mobileVal.match(c.mobile)) {
+                  if (btnType === "btnPlus") {
+                    btnPopup.nextElementSibling.textContent =
+                      "این مخاطب قبلا ذخیره شده است!";
+                    findContact = null;
+                    break;
+                  }
+                  // ویرایش مخاطب موجود در لیست
+                  findContact.username = val2;
+                  contactlist.splice(index, 1, findContact);
+                  findContact = null;
+                  console.log(contactlist); // نمایش خروجی ویرایش در کنسول
+                  break;
+                }
+                index += 1;
+              }
+              // اگر مخاطب قبلا در لیست مخاطبین کاربر نباشد نال نشده و به لیست اضافه میشود
+              if (findContact) {
+                findContact.username = val2;
+                contactlist.push(findContact);
+                console.log(contactlist); // نمایش خروجی افزودن مخاطب جدید در کنسول
+              }
+            } else {
+              nameInput.classList.add("error");
+              btnPopup.nextElementSibling.textContent =
+                "یک نام دلخواه برای مخاطب وارد نمایید...";
+            }
+          } else {
+            mobileInput.classList.add("error");
+            btnPopup.nextElementSibling.textContent =
+              "مخاطب ابتدا باید در سامانه ثبت نام نماید!";
+          }
+        } else {
+          mobileUser.classList.add("error");
+          btnPopup.nextElementSibling.textContent = "شماره موبایل معتبر نیست!";
+        }
+      });
+    </script>
+  </body>
+</html>
