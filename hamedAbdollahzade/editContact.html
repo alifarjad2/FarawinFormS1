@@ -44,7 +44,25 @@
     <!-- یک تگ معنا دار فرم گذاشتم چون میخواستم ی فرم درست کنم  -->
     
     <form >
-            
+    
+        <!-- یک برچسب برای فیلد موبایلم گذاشتم ک مشخص باشه  -->
+        <label for="inputMobile">موبایل : </label>
+        <!-- اینپوت برای فیلد موبایلم گذاشتم چون قراره ی چیزی کاربر وارد کنه و تایپش رو تل گذاشتم تا داخل گوشی صفحه کلید فقط براش باز بشه -->
+        <input type="tel" id="inputMobile" placeholder="6 4 5 * * * * 3 3 9 0" required onkeyup=" validation() ">
+        <!-- اینجا ی اسپن برای پیغام خطا به کاربر درست کردم ک درصورت نیاز نمایش بده  -->
+        <br>
+        <span id="spanInputMobile" style="display: none; color: red;">فقط باید ارقام بین صفر تا نه باشد و طول این فیلد 11 رقم باشد</span>
+        <br>
+
+        <label for="inputFnameLname">نام و نام خانوادگی : </label>
+        <input type="text" id="inputFnameLname" placeholder="حامدعبداله زاده" required onkeyup=" validation() ">
+    
+        <br> <br>
+    <!-- اینجا هم از تگ اینپوت استفاده کردم و تایپشو باتن گذاشتم ک عملکردش بهتره برای ایونت هایی ک میخوام ازش استفاده کنم  -->
+        <input type="button" id="btnAddContact" value="افزودن مخاطب" disabled onclick="btnAddContact()">
+        <br>
+        <span id="spanInputButton" style="display: none; color: red;">پیغام خطا از سمت سرور</span>
+    
     </form>
 
     <script src="./js_Contact.js"></script>
