@@ -55,7 +55,7 @@ function validation ()
 //   اینجا برای رویداد کلیک دکمه باتنم ی فانکشن تعریف کردم ک بیاد چک کنه اگه مقدار موبایل و اسم درست بود پیام مربوطه رو به کاربر نشون بده 
     function btnAddContacts() 
   {
-    debugger
+    // debugger
     // اینجا من از ارایه کانتکتی ک بالا تعریفش کردم و شبیه سازی کردم چک کردم ک درسته یا ن 
     if (flname === contacts[0].name && phoneContact === contacts[0].mobile )
     {
@@ -68,3 +68,31 @@ function validation ()
         alert('این مخاطب وجود ندارد')
     }
   }
+//! --------------For---Edit---Form---------------------------------------------------------------------------
+// این قسمت برای ویرایش است :
+// در اینجا ما اول شماره تماس رو از دیتا بس میدیم به مقدار اینپوت ک فقط برای نمایش است 
+    document.getElementById('inputMobileEdit').value = contacts[0].mobile ;
+    // اینجا هم مقدار اسم و فامیل مخاطب فرضی رو داخل مقدار اینپوت میریزیم مخاطب بدونه کدوم مخاطب رو داره ویرایش میکنه  
+    document.getElementById('inputNameEdit').value = contacts[0].name ;
+
+    // این تابع زمانی ک کاربر دکمه ای فشار بده برای تغییر نام میاد بررسی میکنه اگه مقدار جدید با فعلی یکی نبود میذاره دکمه باتن فعال بشه 
+    function changeName() 
+    {
+        if (document.getElementById('inputNameEdit').value !== contacts[0].name)
+        {
+            document.getElementById('btnEditContact').disabled = false ;
+        }
+        else 
+        if (document.getElementById('inputNameEdit').value === contacts[0].name)
+        {
+            document.getElementById('btnEditContact').disabled = true ;
+        }         
+    }
+
+// این فانکشن هم کارش اینه اگه رو دکمه ویرایش کلیک شد بیاد پیغام موفقیت امیز بودن رو به کاربر بده 
+    function btnChangeName() 
+        {
+           alert ('با موفقیت تغییر یافت');
+        }
+
+//!----------------------------------------------------------------------------------------------------
