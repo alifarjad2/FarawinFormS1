@@ -126,15 +126,16 @@ function validatePhoneNumber(e) {
 		//رو صدا میزنیم و پارامتر های نام آیدی و پیامی که قراره نمایش بده رو ارسال میکنیم showMessage تابع 
 		showMessage('#messagePhoneNumber', 'شماره موبایل حداکثر 11 رقم میباشد')
 	}
-	/*
-	//اگر بخواهیم شرطی براریم که شماره تلفن حتما اولش با 09 شروع شود این کد رو استفاده میکنیم
-	 if ( e.target.value == "" && codeToString != "0" && enableKey ) {
+    //اگر بخواهیم شرطی براریم که شماره تلفن حتما اولش با 09 شروع شود این کد رو استفاده میکنیم
+    //اگر ولیو فیل موبایل خالی بود و کلید 0 فشارداده نشده بود نمیزاره مقداری غیر صفر وارد فیلد بشه
+	 if ( e.target.value == "" && codeToString != "0" && forEnableKey ) {
 		e.preventDefault();
-	}
-	if ( e.target.value == "0" && codeToString != "9" && enableKey ) {
+		showMessage('#messagePhoneNumber', 'شماره موبایل با 09 شروع میشود')
+	}//اگر ولیو داخل فیلد 0 بود رقم بعدی باید 9 باشد
+	if ( e.target.value == "0" && codeToString != "9" && forEnableKey ) {
 		e.preventDefault()
+		showMessage('#messagePhoneNumber', 'شماره موبایل با 09 شروع میشود')
 	}
-	*/
 }
 // #endregion
 // #region Functions > validateField()
