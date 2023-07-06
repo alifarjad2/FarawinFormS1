@@ -1,0 +1,52 @@
+<!-- #region doc -->
+<!-- برای تعیین کردن نوع فایلم به مرورگر -->
+<!DOCTYPE html>
+<!-- #endregion -->
+<!-- #region html -->
+<!-- این تگ برای تعیین نوع سند هست و در آن از اتربیوت لنگ استفاده میکنیم برای تعیین زبان بیشتر سایت و از اتربیوت دایرکشن استفاده میکنیم برای چپ به راست یا راست به چپ سایت-->
+<!-- While HTML does not require authors to specify <html> element start and ending tags, it is important for authors to do so as it will allow them to specify the lang for the webpage.  -->
+<html lang="fa" dir="rtl">
+  <!-- #region head -->
+  <!-- az tag head baraye vizhegi hayii nazir seo va yek seri moshakhasat koli estefde miknim -->
+  <!-- be tor mesal tag meta aval type decode documentmono moshakhas mikne va
+    tag meta dovom miad andaze safhe ro ba meghyas va resolotion safhe set mikne
+    va tag title ham baraye moshkhas kardn title sfahatemon hast -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Contact</title>
+  </head>
+  <!-- #endregion -->
+  <!-- #region body -->
+  <!-- khob tag body badane safhe hamon hast va har chizi ki bkhhim dakhel safhehamon bashe dar inja code miznim -->
+  <body>
+    <!-- #region h3 -->
+    <!-- in tag baraye seo hast va hamchenin karbordesh baray moshakhas kardn onvan ha
+    in tag yek seri style khas dare masaln hamin bold bodan va ... -->
+    <h3>افزودن مخاطب</h3>
+    <!-- #endregion -->
+    <!-- az in tag baraye raftan b khaat badi estefade miknim -->
+    <br />
+    <!-- #region ContactMobile & ContactName -->
+    <!-- az tag label baraye in estefade miknn ke vaghti karbar roye lable click kard inputesh focus beshe -->
+    <label for="textMobile"> شماره موبایل مخاطب: </label>
+    <!-- tag input ham baraye gereftn data az user hast id on ro az ravesh camel estefade kardm avl type data ro nevesht va bad esm data -->
+    <input type="text" id="textMobile" placeholder="0911111111" />
+    <!-- in tag ro baraye namayesh error gozashtm va be in dalil az tag span estefade kardm ke be sorat inline bashe -->
+    <span id = "errorMobile" style="color: red; visibility: hidden;"
+      >شماره موبایل مخاطب اشتباه وارد شده</span
+    >
+    <!-- baraye ghati nashodn field ha va label ha va error ha yek khat fasele gozashtm barya har input -->
+    <br />
+    <label for="textFullname"> نام و نام خانوادگی مخاطب :</label>
+    <input type="text" id="textFullname" placeholder="سعید سعادتی فر" />
+    <span id="errorFullname" style="color: red; visibility: hidden;">پر کردن این فیلد اجباری است</span>
+    <br />
+    <!-- az in button baraye taaid va ersal etelaat estefade kardm va halat on ro disble gozashtm ta zamani ke vorodi ha okay bashe -->
+    <button disabled>افزودن مخاطب</button>
+    <!-- #endregion -->
+    <script src="main.js"></script>
+  </body>
+  <!-- #endregion -->
+</html>
+<!-- #endregion -->
