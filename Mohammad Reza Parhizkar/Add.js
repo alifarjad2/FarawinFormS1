@@ -15,39 +15,52 @@
 //دراینجا یا آوردن ای دی اینپوت تلفن با دات آنبلور به آن ایونت آن بلور داده ام حال با گذاشتن ای در ورودی فانکشن به مرور گر گفته ام که این فانکشن هنگامی که ورودی آنبلور دریافت کرد توسط اینپوت فعال شود و شماره تلفن را چک کند
 
 
-contactNumber.onblur = function(e){
-    //برای راحتی کار مقدار ورودی در فیلد شماره تلفن را به یک متغیر داده ام
-  
-    //بجای استفاده از داکیومنت گت از نام آیدی اینپوت همراه دات ولیو استفاده کردم برای راحتی و کوتاه نویسی 
-    var phone = contactNumber.value;
-    //در اینجا چک میشود که آیا فیلد مورد نظر بعد از آنبلور کردن خالیست یا خیر
-    if(phone == ""){
-      document.getElementById("numberAlert").innerHTML = "فیلد خالیست لطفا آن را پر کنید";
-      document.getElementById("numberAlert").style.color = 'orange';
-    }
-    // در ایف اول عدد بودن کاراکتر ها را چک میکنم که توسط  تابعی از پیش تعیین شده بنام نامبر ک با گرفتن ورودی استرینگ آن را به عدد تبدیل میکند که اگر عدد نباش نان تحویل میدهد به معنی عدد نیست
-    else if(Number(phone)){
-      //در ایف دوم چک میکنم که کاراکتر اول و دوم استرینگ ورودی با کارکتر های 0 و 9 آغاز شده باشد که پیش شماره تلفن های ایرانی است
-      if(phone[0] == 0 || phone[1] == 9){
-        //در ایف سوم چک میکنیم تا سایز استرینگ ورودی برابر با 11 رقم باشد
-        //دات لنث تعداد کاراکتر های موجود در رشته را میشمارد و با یک عدد نمایش میدهد
-        //اعداد بین صفر تا نه وارد شده خود به خود توسط تموم این شروط چک میشوند و من دیگر شرطی برای آن نیاورده ام چون اگر عدد نباشد ارور میدهد و اگز با 09 شروع شود و بخواهد 11 رقمی باشد حتما بین 0 تا 9 بوده است و درست میشود
-        if(phone.length == "11"){
-          document.getElementById("numberAlert").innerHTML = "تایپ شماره ورودی درست است";
-          document.getElementById("numberAlert").style.color = 'yellowgreen';
-        }else{
-          document.getElementById("numberAlert").innerHTML = "باید شامل 11 رقم باشد";
-          document.getElementById("numberAlert").style.color = 'yellow';
+contactNumber.onblur = function (e) {
+  //برای راحتی کار مقدار ورودی در فیلد شماره تلفن را به یک متغیر داده ام
+
+  //بجای استفاده از داکیومنت گت از نام آیدی اینپوت همراه دات ولیو استفاده کردم برای راحتی و کوتاه نویسی
+  var phone = contactNumber.value;
+  //در اینجا چک میشود که آیا فیلد مورد نظر بعد از آنبلور کردن خالیست یا خیر
+  if (phone == "") {
+    document.getElementById("numberAlert").innerHTML =
+      "فیلد خالیست لطفا آن را پر کنید";
+    document.getElementById("numberAlert").style.color = "orange";
+  }
+  // در ایف اول عدد بودن کاراکتر ها را چک میکنم که توسط  تابعی از پیش تعیین شده بنام نامبر ک با گرفتن ورودی استرینگ آن را به عدد تبدیل میکند که اگر عدد نباش نان تحویل میدهد به معنی عدد نیست
+  else if (Number(phone)) {
+    //در ایف دوم چک میکنم که کاراکتر اول و دوم استرینگ ورودی با کارکتر های 0 و 9 آغاز شده باشد که پیش شماره تلفن های ایرانی است
+    if (phone[0] == 0 || phone[1] == 9) {
+      //در ایف سوم چک میکنیم تا سایز استرینگ ورودی برابر با 11 رقم باشد
+      //دات لنث تعداد کاراکتر های موجود در رشته را میشمارد و با یک عدد نمایش میدهد
+      if (phone.length == "11") {
+        //در اینجا یک  حلقه فور با شروزی چک میکند آیا تمام ارقام وارد شده عددی بین 0 تا 9 هستند یا خیر که اگر جواب خیر بود از حلقه بیرون بیاید و دیگر چک نکند
+        for (let i = 0; i < 11; i++) {
+          if (phone[i] >= 0 || phone[i] <= 9) {
+            document.getElementById("numberAlert").innerHTML =
+              "تایپ شماره ورودی درست است";
+            document.getElementById("numberAlert").style.color = "yellowgreen";
+          } else {
+            document.getElementById("numberAlert").innerHTML =
+              "ارقام مورد استفاده باید بین 0 تا 9 باشند";
+            document.getElementById("numberAlert").style.color = "red";
+            break;
+          }
         }
-      }else{
-        document.getElementById("numberAlert").innerHTML = "باید با 09 آغاز شود ";
-        document.getElementById("numberAlert").style.color = 'red';
+      } else {
+        document.getElementById("numberAlert").innerHTML =
+          "باید شامل 11 رقم باشد";
+        document.getElementById("numberAlert").style.color = "yellow";
       }
-    }else{
-      document.getElementById("numberAlert").innerHTML = "باید عدد وارد شود . عدد های وارد شده باید بین 0 تا 9 باشد ";
-      document.getElementById("numberAlert").style.color = 'red';
+    } else {
+      document.getElementById("numberAlert").innerHTML = "باید با 09 آغاز شود ";
+      document.getElementById("numberAlert").style.color = "red";
     }
-  };
+  } else {
+    document.getElementById("numberAlert").innerHTML =
+      "باید عدد وارد شود . عدد های وارد شده باید بین 0 تا 9 باشد ";
+    document.getElementById("numberAlert").style.color = "red";
+  }
+};
   // #endregion
   
   
@@ -73,33 +86,34 @@ contactNumber.onblur = function(e){
   //دراینجا فانکشنی درست کرده ام مبنی بر اینکه اگر شروط در فانکشن های بالا درست بود و فیلد ها درست پر شده اند هنگام کلیک بر روی دکمه افزودن پیغامی برای آن ها نشان داده شود
   //ولی اگر نام ورودی با یکی از نام های داخل آرایه یکی بود پیغام قبلا ثبت شده نشان دهد
   
-  contactButton.onclick = function(e){
+  ontactButton.onclick = function (e) {
     //اینجا آرایه ای تعریف کردم تا بشود اسم های تکراری در ورودی توسط کاربر که قبلا ذخیره شده اند را شناسایی  و پیغامی مبنی بر تکراری بودن اسم نشان دهم
-    let personNames = ["محمدرضا" , "حسین" , "علی" , "جواد"];
+    let personNames = ["محمدرضا", "حسین", "علی", "جواد"];
     //این دو متغیر را از فانکشن های بالا آوردم تا در این فانکشن نیز از آنها استفاده کنم
     var phone = contactNumber.value;
     var personName = contactName.value;
     //در اینجا شماره بودن ورودی راستی آزمایی میشود
-    if(Number(phone)){
+    if (Number(phone)) {
       //دراینجا با 0 و 9 شروع شدن شماره راستی آزمایی میشود
-      if(phone[0] == "0" || phone[1] == "9"){
+      if (phone[0] == "0" || phone[1] == "9") {
         //دراینجا 11 رقمی بودن شماره چک میشود
-        if(phone.length == "11")
-        {
-          //در این قسمت خالی نبودن فیلد نام کنترل میشود
-          if(!personName == "" ){
-            //در اینجا توسط پراپرتی اینکلود چک میکنم که آیا اسم وارد شده جز نام های ثبت شده در آرایه از پیش تعریف شده است یا خیر
-            //The includes() method returns true if a string contains a specified string. Otherwise it returns false . The includes() method is case sensitive.
-            if(personNames.includes(personName)){
-              alert("قبلا ثبت شده است");
-              return true;
-            }else{
-              alert("باموفقیت ثبت شد :)");
+        if (phone.length == "11") {
+          if (numberAlert.innerHTML == "تایپ شماره ورودی درست است") {
+            //در این قسمت خالی نبودن فیلد نام کنترل میشود
+            if (!personName == "") {
+              //در اینجا توسط پراپرتی اینکلود چک میکنم که آیا اسم وارد شده جز نام های ثبت شده در آرایه از پیش تعریف شده است یا خیر
+              //The includes() method returns true if a string contains a specified string. Otherwise it returns false . The includes() method is case sensitive.
+              if (personNames.includes(personName)) {
+                alert("قبلا ثبت شده است");
+                return true;
+              } else {
+                alert("باموفقیت ثبت شد :)");
+              }
             }
           }
         }
       }
-    }else{
+    } else {
       //در صورت اشتباه بودن شروط بالا من از کد زیر استفاده کردم که ای نشانگر ایونت و پریونت نشانگر توقف عملیات است به این معنی که از اتفاق افتادن رویداد مورد نظر که در اینجا رویداد کلیک و عمل دکمه است جلوگیری میشود و با فشردن دکمه اتفاقی نمی افتد
       e.preventDefault;
     }
