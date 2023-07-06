@@ -1,0 +1,39 @@
+<!-- برای اینکه به مرورگر بگیم کدمون استاندارد هس -->
+<!DOCTYPE html>
+<!-- ایجاد ساختار سند  html -->
+<html lang="fa" dir="rtl">
+  <!-- مشخصات کلی سند رو به مرورگر میگیم -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <!-- بدنه کد -->
+  <body>
+    <!-- #region formPart -->
+    <!-- جدا کردن بخش فرم دریافت شماره و نام مخاطب -->
+    <div id="form AddNewContact" src>
+    <!-- اضافه کردن لیبل برای اینکه مشخص باشه این اینپوت شماره میگیره -->
+    <label for="numberMobileNewContact"> شماره موبایل : </label>
+    <span id="errorNumber" style="color: red"> شماره نامعتبر است </span>
+    <br />
+    <!--  ورودی دریافت شماره مخاطب جدید -->
+    <input id="numberMobileNewContact" type="tel" placeholder="09123456789"/>
+    <br /><br />
+    <!-- اضافه کردن لیبل برای اینکه مشخص باشه این اینپوت اسم مخاطب جدید رو میگیره-->
+    <label for="nameNewContact"> نام و نام خانوادگی : </label>
+    <span id="errorName" style="color: red"> فیلد را پرکنید </span>
+    <br />
+    <!-- ورودی دریافت اسم مخاطب جدید -->
+    <input id="nameNewContact" type="text" />
+    <br /><br />
+    <!-- دکمه برای ارسال اطلاعات -->
+    <button id="submitButton">اضافه کردن مخاطب جدید</button>
+    
+    <span id="error" style="display: none;">  </span>
+    </div>
+    <!-- #end region formPart -->
+    <!-- اضافه کردن کد js -->
+    <script src="addContact.js"></script>
+    </body>
+</html>
