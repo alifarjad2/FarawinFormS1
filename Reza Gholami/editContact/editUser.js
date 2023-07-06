@@ -63,18 +63,23 @@ function PastePhoneNumber( e ) {
 	//به داده های موجود در کلیپ بورد دسترسی پیدا میکنیم  e.clipboard  ما از طریق  
 	//clipboardData میتونیم داده های موجود در کلیپ بورد را با فرمت تکست بخوانیم و انتساب بدیم به متغیر .getData("text") و از طریق 
 	let clipboardData = e.clipboardData.getData( "text" )
-	//شرط چک میکنه اگر داده کلیپبورد عدد بود و طولش کمتر مساوی 11 بود پیست بشه
-	if ( Number( clipboardData ) && clipboardData.length <= 11 ) {}
-	//در غیر اینصورت اگر عدد بود و طولش بیشتر از 11 رقم بود  بره داخل بلاک شرط و
-	else if ( Number( clipboardData ) && clipboardData.length > 11 ) {
-		//جلوی پیست رو بگیره
+	//متغیر زیر رو تعریف کردم تا بفهمم مقدار پیست شده عدد هست یانه
+	var counterr = 0
+	//حلقه ایجاد شده تا از 0 تا کمتر از طول متن کلیپبورد  چک کنه 
+	for ( let i = 0; i < clipboardData.length; i++ ) {
+		//اگر کاراکتر های متن عدد بود کانتر پلاس پلاس میشه
+		if ( clipboardData[ i ] >= '0' && clipboardData[ i ] <= '9' ) {
+			counterr++; // counterr++  || counterr = counterr +1
+		}
+	}
+	//اگر مقدار کانتر ما برابر بود با طول متن داخل کلیپ بورد  و طول آن کمتر از 11 بود پیست بشه
+	if ( counterr == clipboardData.length && clipboardData.length <= 11 ) {}
+	//اگر مقدار کانتر ما برابر بود با طول متن داخل کلیپ بورد و طول آن بیشتر از 11 رقم بود پیست نشه و پیغام خطا رو نشون بده با پارامتر های ارسالی
+	else if ( counterr == clipboardData.length && clipboardData.length > 11 ) {
 		e.preventDefault()
-		//نمایش پیام
 		showMessage( '#messagePhoneNumber', ' حداکثر 11 رقم میتوان پیست کرد' )
-	} else {
-		//اگر عدد نبود
+	} else { //اگر همه کاراکتر ها عدد نبود
 		e.preventDefault()
-		//نمایش پیام
 		showMessage( '#messagePhoneNumber', 'فقط عدد پیست میشود ' )
 	}
 }
