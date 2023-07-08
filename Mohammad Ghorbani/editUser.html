@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ویرایش مخاطب</title>
+  </head>
+  <body>
+    <form>
+      <div>
+        <label
+          >موبایل :
+          <input id="inputEditMobile" type="tel" />
+        </label>
+        <br />
+        <span id="errorMassageEditMobile"></span>
+        <br />
+      </div>
+      <div>
+        <label
+          >نام و نام خانوادگی :
+          <input id="inputEditFullName" type="text" required
+        /></label>
+        <br />
+        <span id="errorMassageEditFullName"></span>
+        <br />
+      </div>
+      <div>
+        <button id="saveUser">ذخیره</button>
+      </div>
+      <div>
+        <a href="addUser.html">افزودن مخاطب</a>
+      </div>
+      <div>
+        <button id="closeEditUserPage">بستن صفحه</button>
+      </div>
+    </form>
+    <script src="validation.js"></script>
+  </body>
+</html>
