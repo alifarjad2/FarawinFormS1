@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+
+
+    
+    <br><br>
+    <div>
+        <label for="login_mob">نام و نام خانوادگی:</label>
+        <input type="text" id="name" name="name" placeholder="نام و نام خانوادگی" onkeyup="checkFields()" autofocus
+            required>
+
+    </div>
+    <br>
+    <div>
+        <label for="login_mob">شماره همراه:</label>
+        <input type="tel" id="mobile" name="mobile" placeholder="*********09" maxlength="11"
+            onchange="validatePhoneNumber()" onkeyup="checkFields()" required>
+        <div id="phoneNumberError" style="color: red; font-size:x-small;"></div>
+    </div>
+    <br>
+    <button id="addContactBtn" onclick="addContact()" disabled> افزودن مخاطب</button>
+
+    <button id="toggleFormBtn" onclick="toggleForm()">بستن فرم</button>
+    <br><br>
+    <div id="contactsDiv"></div>
+
+    <script>
+
+        function validatePhoneNumber() {
+            const phoneNumberInput = document.getElementById("mobile");
+            const phoneNumber = phoneNumberInput.value;
+            const pattern = /^09\d{9}$/; // الگوی عبارت منظم برای تطبیق با شماره تلفن همراه ایرانی
+            const errorDiv = document.getElementById("phoneNumberError");
+
+            if (pattern.test(phoneNumber)) {
+                errorDiv.innerText = "";
+            } else {
+                errorDiv.innerText = "شماره تلفن همراه باید 11رقم و با 09 شروع شود.";
+            }
+        }
+
+        document.getElementById('mobile').addEventListener('keypress', function (x) {
+            var key = x.keyCode || x.which;
+            if (key < 48 || key > 57) {
+                x.preventDefault();
+            }
+        });
+
+        function checkFields() {
+            var nameField = document.getElementById("name");
+            var mobileField = document.getElementById("mobile");
+            var addButton = document.getElementById("addContactBtn");
+            const phoneNumber = mobileField.value;
+            const pattern = /^09\d{9}$/; // الگوی عبارت منظم برای تطبیق با شماره تلفن همراه ایرانی
+
+            if (nameField.value === "" || mobileField.value === "" || !(pattern.test(phoneNumber))) {
+                addButton.disabled = true;
+            } else {
+                addButton.disabled = false;
+            }
+        }
+
+        var formVisible = true;
+
+        function toggleForm() {
+            if (formVisible) {
+                document.getElementById("name").style.display = "none";
+                document.getElementById("mobile").style.display = "none";
+                document.getElementById("phoneNumberError").style.display = "none";
+                document.getElementById("addContactBtn").style.display = "none";
+                document.getElementById("toggleFormBtn").innerText = "✓ نمایش فرم";
+
+                // حذف تگ‌های label
+                var labels = document.getElementsByTagName("label");
+                for (var i = 0; i < labels.length; i++) {
+                    labels[i].style.display = "none";
+                }
+            } else {
+                document.getElementById("name").style.display = "block";
+                document.getElementById("mobile").style.display = "block";
+                document.getElementById("phoneNumberError").style.display = "block";
+                document.getElementById("addContactBtn").style.display = "block";
+                document.getElementById("toggleFormBtn").innerText = " ✕ بستن فرم";
+                // نمایش مجدد تگ‌های label
+                var labels = document.getElementsByTagName("label");
+                for (var i = 0; i < labels.length; i++) {
+                    labels[i].style.display = "inline";
+                }
+            }
+            formVisible = !formVisible;
+        }
+
+
+
+        var contacts = [];
+
+        // تابع افزودن مخاطب به آرایه و نمایش آن در صفحه
+        function addContact() {
+            var nameInput = document.getElementById("name");
+            var mobileInput = document.getElementById("mobile");
+
+            // ساخت یک شیء مخاطب با مقادیر فیلدها
+            var contact = {
+                name: nameInput.value,
+                mobile: mobileInput.value
+            };
+
+            // اضافه کردن مخاطب به آرایه
+            contacts.push(contact);
+
+            // پاک کردن مقادیر فیلدها
+            nameInput.value = "";
+            mobileInput.value = "";
+            alert(" با موفقیت ثبت نام شدید.")
+            // نمایش مخاطبان در صفحه
+            displayContacts();
+
+            checkFields();
+        }
+
+        // تابع نمایش مخاطبان در صفحه
+        function displayContacts() {
+            var contactsDiv = document.getElementById("contactsDiv");
+            contactsDiv.innerHTML = "";
+
+            for (var i = 0; i < contacts.length; i++) {
+                var contact = contacts[i];
+                var contactDiv = document.createElement("div");
+
+                var nameParagraph = document.createElement("p");
+                nameParagraph.textContent = "نام و نام خانوادگی: " + contact.name;
+                contactDiv.appendChild(nameParagraph);
+
+                var mobileParagraph = document.createElement("p");
+                mobileParagraph.textContent = "شماره همراه: " + contact.mobile;
+                contactDiv.appendChild(mobileParagraph);
+
+                contactsDiv.appendChild(contactDiv);
+            }
+        }
+
+
+    </script>
+
+
+
+
+
+
+
+
+</body>
+
+</html>
