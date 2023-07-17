@@ -61,3 +61,24 @@ function addContact() {
    };
 };
 
+////////////////////////////////////////////* Edit contacs
+// در اینجا یک تابع برای فرم ویرایش مخاطب نوشتیم که فقط میتواند نام ان را تغییر دهد
+function editName() {
+   // مقدار فیلد نام مخاطب را در یک متغیر ریختم
+   let newContact  = document.getElementById('inputEditName').value;
+   // در اینجا شرط گزاشتم که اگر طول رشته ی مقدار نام مخاطب از 3 حرف بیشتر بود پیام خطا نشان داده نشود و دکمه هم فعال شود
+   if ( newContact.length >= 3 ) {
+      document.getElementById('wrongEditName').innerHTML = "";
+      document.getElementById('editButton').disabled = false;
+   }else{
+   //  ولی اگر طول رشته کمتر از 3 حرف بود دکمه فعال نمیشود و پیام خطا دریافت میکند
+      document.getElementById('wrongEditName').innerHTML = "لطفا نام مخاطب را وارد کنید";
+      document.getElementById('editButton').disabled = true;
+   }
+};
+//  اینجاهم گفتم  زمانیکه کاربر دکمه ویرایش را کلیک کرد پیامی را دریافت کند
+function editContactButton() {
+
+   alert("نام مخاطب باموفقیت ویرایش شد")
+
+}
